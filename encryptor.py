@@ -2,9 +2,13 @@ from cryptography.fernet import Fernet
 import base64
 import hashlib
 
+# hash the key using sha 256 then base 64, encode it into a fernet key
+
 def generate_key_from_password(password: str) -> bytes:
     digest = hashlib.sha256(password.encode()).digest()
     return base64.urlsafe_b64encode(digest)
+
+# take each char from the fernet token, xor it with a byte from the key & loop, convert to hexdecimal
 
 def xor_encrypt(data: str, key: bytes) -> str:
     result = []
@@ -12,6 +16,8 @@ def xor_encrypt(data: str, key: bytes) -> str:
         key_byte = key[i % len(key)]
         result.append(f"{ord(char) ^ key_byte:02x}")
     return ''.join(result)
+
+# split hex into bytes, xor each byte with the key to reverse the original xor, orig fernet token output
 
 def xor_decrypt(encrypted_hex: str, key: bytes) -> str:
     result = []
@@ -21,6 +27,8 @@ def xor_decrypt(encrypted_hex: str, key: bytes) -> str:
         result.append(chr(byte ^ key_byte))
     return ''.join(result)
 
+# use AES + CBC & HMAC using fernet, add an IV & an integrity check, convert to base64
+
 def fernet_encrypt(text: str, key: bytes) -> str:
     f = Fernet(key)
     return f.encrypt(text.encode()).decode()
@@ -29,7 +37,6 @@ def fernet_decrypt(token: str, key: bytes) -> str:
     f = Fernet(key)
     return f.decrypt(token.encode()).decode()
 
-# Ask user if they have a password
 print("Do you have a password based key? (yes/no)")
 choice = input("> ").strip().lower()
 
@@ -39,7 +46,6 @@ else:
     password = Fernet.generate_key().decode()
     print(f"Your new password (SAVE THIS): {password}")
 
-# Key for Fernet + XOR
 key = generate_key_from_password(password)
 
 print("Encrypt or decrypt? (e/d)")
