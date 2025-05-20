@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encryptor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Text Encryptor</h2>
+
+        <div class="field-group">
+            <label>Password:</label>
+            <input type="text" id="password" placeholder="Enter or generate a password">
+            <button onclick="generatePassword()">Generate Password</button>
+        </div>
+
+        <label>Text:</label>
+        <textarea id="text" placeholder="Enter text..."></textarea>
+
+        <div class="buttons">
+            <button onclick="encrypt()">Encrypt</button>
+            <button onclick="decrypt()">Decrypt</button>
+        </div>
+
+        <pre id="output"></pre>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

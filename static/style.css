@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    background: #1a1a1a;
+    color: #f2f2f2;
+    padding: 2em;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+textarea, input {
+    width: 100%;
+    padding: 1em;
+    margin: 1em 0;
+}
+button {
+    padding: 0.5em 1em;
+    margin-right: 1em;
+}
+pre {
+    background: #333;
+    padding: 1em;
+}
