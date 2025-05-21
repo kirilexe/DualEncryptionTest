@@ -1,5 +1,5 @@
 function generatePassword() {
-    // Generate a Fernet-compatible password using 32 random bytes (Base64-encoded)
+    // Generate a Fernet-compatible password using 32 random bytes (Base64-encoded) but this time in javascript since it's faster
     const array = new Uint8Array(32);
     window.crypto.getRandomValues(array);
     const password = btoa(String.fromCharCode(...array)).slice(0, 44); // make it Fernet-safe length
@@ -42,4 +42,13 @@ async function decrypt() {
 
     const result = await response.json();
     document.getElementById('output').textContent = result.result || result.error;
+}
+
+function copy(id) {
+    var copyText = document.getElementById(id);
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(copyText.value);
 }

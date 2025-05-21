@@ -12,6 +12,7 @@
             <label>Password:</label>
             <input type="text" id="password" placeholder="Enter or generate a password">
             <button onclick="generatePassword()">Generate Password</button>
+            <button onclick="copy('password')" id="copy_result">Copy Password</button>
         </div>
 
         <label>Text:</label>
@@ -22,7 +23,8 @@
             <button onclick="decrypt()">Decrypt</button>
         </div>
 
-        <pre id="output"></pre>
+        <textarea readonly id="output"></textarea> 
+        <button onclick="copy('output')" id="copy_result">Copy</button>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

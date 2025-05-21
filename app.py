@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/encrypt', methods=['POST'])
+@app.route('/encrypt', methods=['POST']) 
 
 def encrypt():
     data = request.json
@@ -33,4 +33,5 @@ def decrypt():
         return jsonify({'error': 'Wrong key or corrupted data.'}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) # debug lets you change code while this is on
+

@@ -2,6 +2,8 @@ from cryptography.fernet import Fernet
 import base64
 import hashlib
 
+# irrelevant old file with the txt stuff
+
 def generate_key_from_password(password: str) -> bytes:
     digest = hashlib.sha256(password.encode()).digest()
     return base64.urlsafe_b64encode(digest)
@@ -111,3 +113,4 @@ elif mode == "d":
             print(decrypted_text)
         except Exception:
             print("Error - wrong key and/or corrupted data.")
+
